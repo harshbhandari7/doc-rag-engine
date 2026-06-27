@@ -1,8 +1,36 @@
-# doc-rag-engine
+<div align="center">
 
-An advanced RAG (Retrieval-Augmented Generation) pipeline that indexes documents into Qdrant using both dense and sparse vectors, retrieves candidates with hybrid RRF fusion, reranks with a cross-encoder, generates grounded answers via an OpenAI-compatible LLM, and evaluates retrieval + generation quality across all configuration combinations with RAGAS and MLflow.
+# 📚 doc-rag-engine
 
-The central question this project answers: **does chunking strategy meaningfully change retrieval quality?** The evaluation across 3 strategies × 4 retrieval variants × 27 questions shows it does — recursive chunking outperforms fixed-size and semantic on faithfulness and context recall, and the margin is large enough to matter in production.
+### An advanced RAG pipeline with hybrid search, cross-encoder reranking, and RAGAS evaluation
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
+[![Tests](https://img.shields.io/badge/tests-76%20passing-brightgreen.svg)](tests/)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-orange.svg)](https://github.com/astral-sh/ruff)
+[![Qdrant](https://img.shields.io/badge/vector%20store-Qdrant-red.svg)](https://qdrant.tech)
+[![MLflow](https://img.shields.io/badge/experiment%20tracking-MLflow-blue.svg)](https://mlflow.org)
+
+</div>
+
+---
+
+**doc-rag-engine** answers a question that matters in production: **does chunking strategy meaningfully change retrieval quality?** It indexes documents into Qdrant with dense + sparse vectors, retrieves with hybrid RRF fusion, reranks with a cross-encoder, generates grounded answers via any OpenAI-compatible LLM, and evaluates all configuration combinations with RAGAS and MLflow. The answer: yes — recursive chunking outperforms fixed-size and semantic by up to **0.165 faithfulness points** across 3 strategies × 4 retrieval variants × 27 questions.
+
+## Table of Contents
+
+1. [Dashboard](#dashboard)
+2. [Setup](#setup)
+3. [Full Pipeline](#full-pipeline)
+4. [Retrieval Architecture](#retrieval-architecture)
+5. [Generation](#generation)
+6. [Evaluation](#evaluation)
+7. [Findings](#findings)
+8. [Qdrant Collections](#qdrant-collections)
+9. [Tech Stack](#tech-stack)
+10. [Configuration Reference](#configuration-reference)
+11. [Testing](#testing)
+12. [Known Limitations](#known-limitations)
 
 ---
 
