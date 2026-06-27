@@ -1,3 +1,45 @@
+# Python
 __pycache__/
-.env
+*.py[cod]
+*.pyo
+
+# Virtual environment
 venv/
+.venv/
+
+# Environment variables — contains secrets; copy .env.example → .env and fill in values
+.env
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# macOS
+.DS_Store
+
+# pytest
+.pytest_cache/
+
+# Claude Code project files (session state, scheduled tasks)
+.claude/
+
+# Raw source documents — large binary files; place your own PDFs in data/raw/
+# The directory itself is tracked (via .gitkeep) so it exists after cloning.
+data/raw/*
+!data/raw/.gitkeep
+data/processed/
+
+# Intermediate evaluation artifacts — reproducible by re-running compare.py
+# comparison_summary.json and scores_*.csv ARE committed (dashboard needs them)
+data/compare/raw_*.json
+
+# MLflow SQLite backend — reproduced by re-running compare.py
+mlruns.db
+mlruns/
+
+# Model caches — fastembed downloads SPLADE (~500 MB) here on first use
+models/
+.cache/
+
+# Docling conversion artifacts
+artifacts/
