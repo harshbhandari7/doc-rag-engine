@@ -1,0 +1,191 @@
+[
+  {
+    "id": "Q01",
+    "question": "How many parallel attention heads does the Transformer model use, and what is the dimension of each head?",
+    "ground_truth": "The Transformer employs h = 8 parallel attention layers, or heads. For each of these, d_k = d_v = d_model / h = 64. Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.",
+    "source_document": "attention_need.pdf",
+    "source_section": "Section 3.2.2 Multi-Head Attention"
+  },
+  {
+    "id": "Q02",
+    "question": "What are the two sub-layers in each encoder layer of the Transformer?",
+    "ground_truth": "The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, positionwise fully connected feed-forward network. A residual connection is employed around each of the two sub-layers, followed by layer normalization.",
+    "source_document": "attention_need.pdf",
+    "source_section": "Section 3.1 Encoder"
+  },
+  {
+    "id": "Q03",
+    "question": "What additional sub-layer does the Transformer decoder have compared to the encoder?",
+    "ground_truth": "The decoder is also composed of a stack of N = 6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack.",
+    "source_document": "attention_need.pdf",
+    "source_section": "Section 3.1 Decoder"
+  },
+  {
+    "id": "Q04",
+    "question": "What three confidence levels does CRAG's retrieval evaluator assign to retrieved documents?",
+    "ground_truth": "The relevance score is quantified into a total of three confidence degrees and then triggered the corresponding actions: Correct, Incorrect, Ambiguous. If the action Correct is triggered, the retrieved documents will be refined into more precise knowledge strips. If the action Incorrect is triggered, web searches are resorted to as complementary knowledge sources for corrections.",
+    "source_document": "corrective_rag.pdf",
+    "source_section": "Section 4.3 Knowledge Refinement"
+  },
+  {
+    "id": "Q05",
+    "question": "What does CRAG do when retrieval confidence is Incorrect?",
+    "ground_truth": "When the action Incorrect is triggered, the retrieved documents are discarded and web searches are resorted to and regarded as complementary knowledge sources for corrections. When the action Ambiguous is triggered, a soft and balanced action which combines both Correct and Incorrect is triggered.",
+    "source_document": "corrective_rag.pdf",
+    "source_section": "Section 4.5 Web Search"
+  },
+  {
+    "id": "Q06",
+    "question": "What neural network architecture does DPR use to encode questions and passages?",
+    "ground_truth": "DPR uses two independent BERT networks (base, uncased) and takes the representation at the [CLS] token as the output, so d = 768. The question and passage encoders are two separate BERT networks.",
+    "source_document": "dense_retrieval.pdf",
+    "source_section": "Section 3 Encoders"
+  },
+  {
+    "id": "Q07",
+    "question": "What training technique does DPR use to handle negative examples efficiently during training?",
+    "ground_truth": "The DPR model is trained using the in-batch negative setting with a batch size of 128 and one additional BM25 negative passage per question. The question and passage encoders are trained for up to 40 epochs for large datasets and 100 epochs for small datasets, with a learning rate of 10^-5 using Adam.",
+    "source_document": "dense_retrieval.pdf",
+    "source_section": "Section 5.1 Training Details"
+  },
+  {
+    "id": "Q08",
+    "question": "How does RAGAS compute the faithfulness metric for a generated answer?",
+    "ground_truth": "To estimate faithfulness, RAGAS first uses an LLM to extract a set of statements from the answer. The aim of this step is to decompose longer sentences into shorter and more focused assertions. The answer is faithful to the context if the claims that are made in the answer can be inferred from the context.",
+    "source_document": "ragas.pdf",
+    "source_section": "Section 3 Faithfulness"
+  },
+  {
+    "id": "Q09",
+    "question": "What does the RAGAS answer relevancy metric measure and what does it penalise?",
+    "ground_truth": "Answer Relevancy measures the degree to which a response directly addresses and is appropriate for a given question. It penalizes the presence of redundant information or incomplete answers given a question.",
+    "source_document": "ragas.pdf",
+    "source_section": "Section 3 Answer Relevancy"
+  },
+  {
+    "id": "Q10",
+    "question": "What is the key advantage of RAGAS metrics with respect to human-annotated ground truth?",
+    "ground_truth": "RAGAS puts forward a suite of metrics which can be used to evaluate the different dimensions of RAG architectures without having to rely on ground truth human annotations. These dimensions include the ability of the retrieval system to identify relevant context passages, the ability of the LLM to exploit those passages faithfully, and the quality of the generation itself.",
+    "source_document": "ragas.pdf",
+    "source_section": "Section 1 Introduction"
+  },
+  {
+    "id": "Q11",
+    "question": "What performance pattern do language models exhibit when relevant information is placed in the middle of a long input context?",
+    "ground_truth": "Language model performance degrades significantly when changing the position of relevant information. Performance is often lowest when models must use information in the middle of long input contexts, indicating that models struggle to robustly access and use information in long input contexts.",
+    "source_document": "long_context_llm.pdf",
+    "source_section": "Section on Long Context Experiments"
+  },
+  {
+    "id": "Q12",
+    "question": "What are the three developmental paradigms of the RAG framework described in the survey?",
+    "ground_truth": "The analysis outlines three developmental paradigms within the RAG framework: Naive, Advanced, and Modular RAG, each representing a progressive enhancement over its predecessors. RAG's technical integration with other AI methodologies such as fine-tuning and reinforcement learning has further expanded its capabilities.",
+    "source_document": "rag_llm.pdf",
+    "source_section": "RAG Paradigm Overview"
+  },
+  {
+    "id": "Q13",
+    "question": "How many datasets and categories does the MTEB benchmark cover in its English subset?",
+    "ground_truth": "MTEB evaluates the English subsets, which have 56 datasets spanning across 6 categories: Classification, Clustering, Pair Classification, Rerank, Retrieval, STS, and Summarization.",
+    "source_document": "text_embed.pdf",
+    "source_section": "MTEB Benchmark Evaluation"
+  },
+  {
+    "id": "Q14",
+    "question": "What was the real GDP growth rate in the fourth quarter of 2025?",
+    "ground_truth": "Real GDP increased at an annual rate of 0.7 percent (0.2 percent at a quarterly rate) in the fourth quarter, a downward revision of 0.7 percentage point from the previous estimate, reflecting downward revisions to exports, consumer spending, government spending, and investment.",
+    "source_document": "gdp4q25.pdf",
+    "source_section": "Sources of change for real GDP"
+  },
+  {
+    "id": "Q15",
+    "question": "What factors caused the deceleration in real GDP in Q4 2025?",
+    "ground_truth": "The deceleration in real GDP in the fourth quarter reflected downturns in government spending and exports and a deceleration in consumer spending that were partly offset by an acceleration in investment. The decrease in imports was smaller than in the previous quarter.",
+    "source_document": "gdp4q25.pdf",
+    "source_section": "Q4 2025 GDP Comparison"
+  },
+  {
+    "id": "Q16",
+    "question": "What was the growth rate of real final sales to private domestic purchasers in Q4 2025?",
+    "ground_truth": "Real final sales to private domestic purchasers, the sum of consumer spending and gross private fixed investment, increased 1.9 percent in the fourth quarter, revised down 0.5 percentage point from the previous estimate.",
+    "source_document": "gdp4q25.pdf",
+    "source_section": "Real Final Sales"
+  },
+  {
+    "id": "Q17",
+    "question": "How does natural selection act on variations among individuals according to Darwin?",
+    "ground_truth": "Any variation, however slight and from whatever cause proceeding, if it be in any degree profitable to an individual of any species, in its infinitely complex relations to other organic beings and to external nature, will tend to the preservation of that individual, and will generally be inherited by its offspring.",
+    "source_document": "species_origin.pdf",
+    "source_section": "On Natural Selection"
+  },
+  {
+    "id": "Q18",
+    "question": "What evidence does Darwin cite regarding the classification of closely allied species and varieties?",
+    "ground_truth": "Many of the cases of strongly-marked varieties or doubtful species well deserve consideration, as several interesting lines of argument from geographical distribution, analogical variation, and hybridism have been brought to bear on the attempt to determine their rank.",
+    "source_document": "species_origin.pdf",
+    "source_section": "Varieties and Species Classification"
+  },
+  {
+    "id": "Q19",
+    "question": "What is the Stoic summum bonum according to the Meditations commentary?",
+    "ground_truth": "The Stoic physical theory was a pantheistic materialism, and their summum bonum was 'to live according to nature.' Their wise man needs nothing; he is sufficient to himself; virtue is good, vice bad, external things indifferent.",
+    "source_document": "meditations.pdf",
+    "source_section": "Biographical Notes on Stoicism"
+  },
+  {
+    "id": "Q20",
+    "question": "Who does Plato say should be kings in the perfect state, according to the Republic?",
+    "ground_truth": "In the perfect State, wives and children are to be in common, and the education and pursuits of men and women in both war and peace are to be common. Kings are to be philosophers and warriors, and the soldiers of the State are to live together having all things in common.",
+    "source_document": "the_republic.pdf",
+    "source_section": "Book V, Perfect State"
+  },
+  {
+    "id": "Q21",
+    "question": "What does Sherlock Holmes say to Watson about how to examine a personal object for clues?",
+    "ground_truth": "Sherlock Holmes tells Watson: 'You know my methods. What can you gather yourself as to the individuality of the man who has worn this article?' Holmes demonstrates his method of deducing personal characteristics from physical objects such as hats.",
+    "source_document": "sherlock_homes.pdf",
+    "source_section": "The Adventure of the Blue Carbuncle"
+  },
+  {
+    "id": "Q22",
+    "question": "What does the rag_hallucination paper show happens to hallucination rates with retrieval-augmented models?",
+    "ground_truth": "Hallucination rates drop dramatically for retrieval-augmented models, while knowledgeability rates skyrocket. These results support the main claim that retrieval-augmented models reduce hallucination in conversations.",
+    "source_document": "rag_hallucination.pdf",
+    "source_section": "Evaluation Results Table 3"
+  },
+  {
+    "id": "Q23",
+    "question": "What is the main thesis of the paper 'Retrieval Augmentation Reduces Hallucination in Conversation'?",
+    "ground_truth": "The paper's main thesis is that retrieval augmentation reduces hallucination in conversation. The paper demonstrates that hallucination rates drop dramatically for retrieval-augmented models, while knowledgeability rates skyrocket.",
+    "source_document": "rag_hallucination.pdf",
+    "source_section": "Abstract"
+  },
+  {
+    "id": "Q24",
+    "question": "What does the LLM evaluation survey say about the importance of measuring factual hallucination?",
+    "ground_truth": "Evaluating factuality is of great importance in order to trust and efficiently use language models. This includes the ability of these models to maintain consistency with known facts, avoid generating misleading or false information (known as 'factual hallucination'), and effectively learn and recall factual knowledge.",
+    "source_document": "llm_eval.pdf",
+    "source_section": "Factuality Evaluation"
+  },
+  {
+    "id": "Q25",
+    "question": "What does the HELM evaluation framework assess in language models?",
+    "ground_truth": "HELM provides a comprehensive assessment of LLMs, evaluating language models across various aspects such as language understanding, generation, coherence, context sensitivity, common-sense reasoning, and domain-specific knowledge. HELM aims to holistically evaluate the performance of language models across different tasks and domains.",
+    "source_document": "llm_eval.pdf",
+    "source_section": "HELM Benchmark"
+  },
+  {
+    "id": "Q26",
+    "question": "How does Plato describe the four corresponding faculties of the soul in relation to levels of knowledge?",
+    "ground_truth": "Plato assigns four corresponding faculties to four divisions of knowledge: pure intelligence to the highest sphere, active intelligence to the second, faith to the third, and the perception of shadows to the fourth. The clearness of the several faculties will be in the same ratio as the truth of the objects to which they are related.",
+    "source_document": "the_republic.pdf",
+    "source_section": "Book VI, Divided Line"
+  },
+  {
+    "id": "Q27",
+    "question": "What does Marcus Aurelius say about the nature of man's life in the Meditations?",
+    "ground_truth": "Marcus Aurelius writes: 'Thus must thou according to truth and nature, throughly consider how man's life is but for a very moment of time, and so depart meek and contented: even as if a ripe olive falling should praise the ground that bare her, and give thanks to the tree that begat her.'",
+    "source_document": "meditations.pdf",
+    "source_section": "Meditations Book IV"
+  }
+]

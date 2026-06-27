@@ -1,0 +1,28 @@
+id,question,source_document,top_retrieved_doc,top_score,retrieval_latency_s,generation_latency_s,error,faithfulness,answer_relevancy,context_precision,context_recall
+Q01,"How many parallel attention heads does the Transformer model use, and what is th",attention_need.pdf,attention_need.pdf,0.987,0.7187,1.7112,,1.0,0.9661242789122552,0.99999999998,1.0
+Q02,What are the two sub-layers in each encoder layer of the Transformer?,attention_need.pdf,attention_need.pdf,0.9988,0.2889,1.638,,1.0,0.8058213295766777,0.99999999998,1.0
+Q03,What additional sub-layer does the Transformer decoder have compared to the enco,attention_need.pdf,attention_need.pdf,0.9697,0.3163,1.4407,,1.0,0.793678133528206,0.8055555555287036,1.0
+Q04,What three confidence levels does CRAG's retrieval evaluator assign to retrieved,corrective_rag.pdf,rag_llm.pdf,0.992,0.3369,1.2319,,0.25,0.8705621024654924,0.999999999975,0.6666666666666666
+Q05,What does CRAG do when retrieval confidence is Incorrect?,corrective_rag.pdf,corrective_rag.pdf,0.9987,0.2984,1.0975,,0.0,0.0,0.94999999997625,1.0
+Q06,What neural network architecture does DPR use to encode questions and passages?,dense_retrieval.pdf,dense_retrieval.pdf,0.9948,0.3279,1.2144,,1.0,0.43675274272651854,0.8874999999778125,1.0
+Q07,What training technique does DPR use to handle negative examples efficiently dur,dense_retrieval.pdf,dense_retrieval.pdf,0.9969,0.3688,1.5383,,1.0,0.5496831831397435,0.6791666666496875,1.0
+Q08,How does RAGAS compute the faithfulness metric for a generated answer?,ragas.pdf,ragas.pdf,0.9938,0.4541,2.5547,,1.0,0.5431856672890624,0.36666666664833336,1.0
+Q09,What does the RAGAS answer relevancy metric measure and what does it penalise?,ragas.pdf,ragas.pdf,0.9921,0.2621,1.4521,,1.0,0.6595580126684347,0.8041666666465626,1.0
+Q10,What is the key advantage of RAGAS metrics with respect to human-annotated groun,ragas.pdf,ragas.pdf,0.99,0.3492,1.3098,,0.0,0.0,0.99999999998,1.0
+Q11,What performance pattern do language models exhibit when relevant information is,long_context_llm.pdf,long_context_llm.pdf,0.9997,0.2661,1.1036,,0.5,0.0,0.99999999998,1.0
+Q12,What are the three developmental paradigms of the RAG framework described in the,rag_llm.pdf,rag_llm.pdf,0.9999,0.2708,1.3787,,0.75,0.9597247513868593,0.9999999999666667,1.0
+Q13,How many datasets and categories does the MTEB benchmark cover in its English su,text_embed.pdf,text_embed.pdf,0.9998,0.3263,1.3676,,1.0,0.7363412360189286,0.99999999995,1.0
+Q14,What was the real GDP growth rate in the fourth quarter of 2025?,gdp4q25.pdf,gdp4q25.pdf,0.9999,0.5432,1.3012,,0.5,0.9929266069163298,0.8874999999778125,1.0
+Q15,What factors caused the deceleration in real GDP in Q4 2025?,gdp4q25.pdf,gdp4q25.pdf,0.9915,0.5397,1.8228,,1.0,0.9180387863202522,0.7499999999625,1.0
+Q16,What was the growth rate of real final sales to private domestic purchasers in Q,gdp4q25.pdf,gdp4q25.pdf,0.9992,0.7827,1.8027,,0.6,0.8026910252114243,0.6999999999766667,1.0
+Q17,How does natural selection act on variations among individuals according to Darw,species_origin.pdf,species_origin.pdf,0.9936,0.3307,2.1081,,1.0,0.8576809085161033,0.99999999998,1.0
+Q18,What evidence does Darwin cite regarding the classification of closely allied sp,species_origin.pdf,species_origin.pdf,0.9818,0.481,3.5346,,1.0,0.5728264538790769,0.36666666664833336,0.0
+Q19,What is the Stoic summum bonum according to the Meditations commentary?,meditations.pdf,meditations.pdf,0.9616,0.6761,1.6384,,0.3333333333333333,1.0,0.8333333332916666,1.0
+Q20,"Who does Plato say should be kings in the perfect state, according to the Republ",the_republic.pdf,the_republic.pdf,0.9432,0.261,2.2681,,0.0,0.0,0.0,0.0
+Q21,What does Sherlock Holmes say to Watson about how to examine a personal object f,sherlock_homes.pdf,sherlock_homes.pdf,0.6822,0.2646,1.9352,,nan,0.0,0.249999999975,1.0
+Q22,What does the rag_hallucination paper show happens to hallucination rates with r,rag_hallucination.pdf,rag_hallucination.pdf,0.9932,0.242,1.089,,1.0,0.8803447418461389,0.699999999965,1.0
+Q23,What is the main thesis of the paper 'Retrieval Augmentation Reduces Hallucinati,rag_hallucination.pdf,corrective_rag.pdf,0.9968,0.2531,2.1837,,0.6666666666666666,1.0,0.999999999975,1.0
+Q24,What does the LLM evaluation survey say about the importance of measuring factua,llm_eval.pdf,llm_eval.pdf,0.9909,0.3559,1.1809,,0.0,0.0,0.99999999998,1.0
+Q25,What does the HELM evaluation framework assess in language models?,llm_eval.pdf,llm_eval.pdf,0.9995,0.3918,2.0318,,1.0,0.43235319518338566,0.99999999995,1.0
+Q26,How does Plato describe the four corresponding faculties of the soul in relation,the_republic.pdf,the_republic.pdf,0.9915,0.3747,2.2173,,1.0,0.894173911831262,0.8055555555287036,1.0
+Q27,What does Marcus Aurelius say about the nature of man's life in the Meditations?,meditations.pdf,meditations.pdf,0.9779,0.5408,2.6076,,1.0,0.705807948819122,0.699999999965,1.0

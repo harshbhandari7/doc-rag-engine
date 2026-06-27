@@ -1,0 +1,542 @@
+[
+  {
+    "id": "Q01",
+    "question": "How many parallel attention heads does the Transformer model use, and what is the dimension of each head?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "In this work we employ h = 8 parallel attention layers, or heads. For each of these we use d k = d v = d model /h = 64 . Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.\n\n3.2.3 Applications of Attention in our Model\n\nThe Transformer uses multi-head attention in three different ways:",
+      "3.2.2 Multi-Head Attention\n\nInstead of performing a single attention function with d model-dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values h times with different, learned linear projections to d k , d k and d v dimensions, respectively. On each of these projected versions of queries, keys and values we then perform the attention function in parallel, yielding d v -dimensional",
+      ". This makes it more difficult to learn dependencies between distant positions [12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2.",
+      "NX\n\nPositional\n\nEncoding\n\nAdd & Norm\n\nFeed\n\nForward\n\nAdd & Norm\n\nMulti-Head\n\nAttention\n\nInput\n\nEmbedding\n\n1\n\nInputs\n\nOutput\n\nProbabilities\n\n1\n\nSoftmax\n\n1\n\nLinear\n\n1\n\nAdd & Norm\n\nFeed\n\nForward\n\n1.\n\nAdd & Norm\n\nMulti-Head\n\nAttention\n\nAdd & Norm\n\nMasked\n\nMulti-Head\n\nAttention\n\nOutput\n\n1\n\nEmbedding\n\nOutputs\n\n(shifted right)\n\nFigure 1: The Transformer - model architecture.",
+      "In this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output. The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as twelve hours on eight P100 GPUs.\n\n2 Background"
+    ],
+    "ground_truth": "The Transformer employs h = 8 parallel attention layers, or heads. For each of these, d_k = d_v = d_model / h = 64. Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.",
+    "source_document": "attention_need.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 1.09,
+    "top_retrieved_doc": "attention_need.pdf",
+    "top_score": 0.9996
+  },
+  {
+    "id": "Q02",
+    "question": "What are the two sub-layers in each encoder layer of the Transformer?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, positionwise fully connected feed-forward network. We employ a residual connection [11] around each of the two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer is LayerNorm( x +Sublayer( x )) , where Sublayer( x ) is the function implemented by the sub-layer itself",
+      "Decoder: The decoder is also composed of a stack of N = 6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions",
+      "3.3 Position-wise Feed-Forward Networks\n\nIn addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically. This consists of two linear transformations with a ReLU activation in between.\n\n<!-- formula-not-decoded -->",
+      "Figure 1: The Transformer - model architecture.\n\nThe Transformer follows this overall architecture using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively.\n\n3.1 Encoder and Decoder Stacks",
+      "- The encoder contains self-attention layers. In a self-attention layer all of the keys, values and queries come from the same place, in this case, the output of the previous layer in the encoder. Each position in the encoder can attend to all positions in the previous layer of the encoder."
+    ],
+    "ground_truth": "The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, positionwise fully connected feed-forward network. A residual connection is employed around each of the two sub-layers, followed by layer normalization.",
+    "source_document": "attention_need.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.73,
+    "top_retrieved_doc": "attention_need.pdf",
+    "top_score": 0.9988
+  },
+  {
+    "id": "Q03",
+    "question": "What additional sub-layer does the Transformer decoder have compared to the encoder?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Decoder: The decoder is also composed of a stack of N = 6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack. Similar to the encoder, we employ residual connections around each of the sub-layers, followed by layer normalization. We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions",
+      "Figure 1: The Transformer - model architecture.\n\nThe Transformer follows this overall architecture using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively.\n\n3.1 Encoder and Decoder Stacks",
+      "3.3 Position-wise Feed-Forward Networks\n\nIn addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully connected feed-forward network, which is applied to each position separately and identically. This consists of two linear transformations with a ReLU activation in between.\n\n<!-- formula-not-decoded -->",
+      ". (2020). The key to ColBERT is a maxsim operation, in which the Transformer outputs of the context encoder are compared to all outputs of the candidate encoder, with the final score being a sum of the maximum similarity scores for each context output",
+      "Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, positionwise fully connected feed-forward network. We employ a residual connection [11] around each of the two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer is LayerNorm( x +Sublayer( x )) , where Sublayer( x ) is the function implemented by the sub-layer itself"
+    ],
+    "ground_truth": "The decoder is also composed of a stack of N = 6 identical layers. In addition to the two sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head attention over the output of the encoder stack.",
+    "source_document": "attention_need.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.72,
+    "top_retrieved_doc": "attention_need.pdf",
+    "top_score": 0.995
+  },
+  {
+    "id": "Q04",
+    "question": "What three confidence levels does CRAG's retrieval evaluator assign to retrieved documents?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Figure 2: An overview of the proposed CRAG at inference. A retrieval evaluator is constructed to evaluate the relevance of the retrieved documents to the input, and estimate a confidence degree based on which different knowledge retrieval actions of { Correct , Incorrect , Ambiguous } can be triggered.",
+      "and non-parameterized advantages are areas ripe for exploration [27]. Another trend is to introduce SLMs with specific functionalities into RAG and fine-tuned by the results of RAG system. For example, CRAG [67] trains a lightweight retrieval evaluator to assess the overall quality of the retrieved documents for a query and triggers different knowledge retrieval actions based on confidence levels.\n\nD. Scaling laws of RAG",
+      "Discussion Preliminary experiments of employing only the Correct and Incorrect actions show that the efficacy of CRAG was easily affected by the accuracy of the retrieval evaluator. The reason might be the distinct knowledge switch for all input cases, regardless of the level of confidence in their judgment. The design of the Ambiguous action significantly helps to mitigate the dependence on the accuracy of the retrieval evaluator.",
+      "To correct the irrelevant documents and refine the target documents as needed, actions should be executed discriminately. Based on the aforementioned confidence score for each retrieved document, three types of actions are designed and triggered accordingly where the upper and lower thresholds are set. If the confidence score is higher than the upper threshold, the retrieved document is identified as Correct , while identified as Incorrect if below the lower threshold",
+      ". Specifically, a lightweight retrieval evaluator is designed to assess the overall quality of retrieved documents for a query, returning a confidence degree based on which different knowledge retrieval actions can be triggered. Since retrieval from static and limited corpora can only return suboptimal documents, large-scale web searches are utilized as an extension for augmenting the retrieval results"
+    ],
+    "ground_truth": "The relevance score is quantified into a total of three confidence degrees and then triggered the corresponding actions: Correct, Incorrect, Ambiguous. If the action Correct is triggered, the retrieved documents will be refined into more precise knowledge strips. If the action Incorrect is triggered, web searches are resorted to as complementary knowledge sources for corrections.",
+    "source_document": "corrective_rag.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.72,
+    "top_retrieved_doc": "corrective_rag.pdf",
+    "top_score": 0.99
+  },
+  {
+    "id": "Q05",
+    "question": "What does CRAG do when retrieval confidence is Incorrect?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Discussion Preliminary experiments of employing only the Correct and Incorrect actions show that the efficacy of CRAG was easily affected by the accuracy of the retrieval evaluator. The reason might be the distinct knowledge switch for all input cases, regardless of the level of confidence in their judgment. The design of the Ambiguous action significantly helps to mitigate the dependence on the accuracy of the retrieval evaluator.",
+      "Figure 2: An overview of the proposed CRAG at inference. A retrieval evaluator is constructed to evaluate the relevance of the retrieved documents to the input, and estimate a confidence degree based on which different knowledge retrieval actions of { Correct , Incorrect , Ambiguous } can be triggered.",
+      "In summary, our contributions in this paper are three-fold: 1) This paper studies the scenarios where the retriever returns inaccurate results and, to the best of our knowledge, makes the first attempt to design corrective strategies for RAG to improve its robustness. 2) A plug-and-play method named CRAG is proposed to improve the ability of automatic self-correction and efficient utilization of retrieved documents",
+      "Incorrect Besides, a retrieval is assumed Incorrect when the confidence scores of all retrieved documents are below the lower threshold. This indicates that all retrieved documents are considered irrelevant, which are unhelpful for generation. Once the knowledge from the retrieval results is judged to be inaccurate, it is unwise to still get stuck in it, which is likely to result in fabricated facts. Therefore, we need to seek new sources of knowledge for correction",
+      "Correct Here, a retrieval is assumed Correct when the confidence score of at least one retrieved document is higher than the upper threshold. If so, it means that there are relevant documents in the retrieved results, and the knowledge from the retrieval results is supposed to be more reliable and accurate. However, even if a relevant document can be found, there is inevitably some noisy knowledge strips in this document"
+    ],
+    "ground_truth": "When the action Incorrect is triggered, the retrieved documents are discarded and web searches are resorted to and regarded as complementary knowledge sources for corrections. When the action Ambiguous is triggered, a soft and balanced action which combines both Correct and Incorrect is triggered.",
+    "source_document": "corrective_rag.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 1.12,
+    "top_retrieved_doc": "corrective_rag.pdf",
+    "top_score": 0.9991
+  },
+  {
+    "id": "Q06",
+    "question": "What neural network architecture does DPR use to encode questions and passages?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Encoders Although in principle the question and passage encoders can be implemented by any neural networks, in this work we use two independent BERT (Devlin et al., 2019) networks (base, uncased) and take the representation at the [CLS] token as the output, so d = 768 .",
+      "The DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10 -5 using Adam, linear scheduling with warm-up and dropout rate 0 . 1 .",
+      ". The technique employs an encoder-decoder to encode the question and decode (generate) the answer, where the encoding is augmented with documents or passages retrieved from a large unstructured document set using a learnt matching function; the entire neural network is typically trained end-to-end",
+      "3.1 Overview\n\nOur dense passage retriever (DPR) uses a dense encoder E P ( \u00b7 ) which maps any text passage to a d -dimensional real-valued vectors and builds an index for all the M passages that we will use for retrieval.",
+      "DPR, as a bi-encoder architecture, transforms both sequences independently into fixed length vectors, and thus limits the interaction between a dialogue context and a candidate document to a final dotproduct similarity score. However, allowing more interaction between a context and candidate yields superior results in various information retrieval and ranking tasks (Humeau et al., 2020; Khattab and Zaharia, 2020)"
+    ],
+    "ground_truth": "DPR uses two independent BERT networks (base, uncased) and takes the representation at the [CLS] token as the output, so d = 768. The question and passage encoders are two separate BERT networks.",
+    "source_document": "dense_retrieval.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.66,
+    "top_retrieved_doc": "dense_retrieval.pdf",
+    "top_score": 0.9974
+  },
+  {
+    "id": "Q07",
+    "question": "What training technique does DPR use to handle negative examples efficiently during training?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "DPR has also been used as an important module in very recent work. For instance, extending the idea of leveraging hard negatives, Xiong et al. (2020a) use the retrieval model trained in the previous iteration to discover new negatives and construct a different set of examples in each training iteration. Starting from our trained DPR model, they show that the retrieval performance can be further improved",
+      "The DPR model used in our main experiments is trained using the in-batch negative setting (Section 3.2) with a batch size of 128 and one additional BM25 negative passage per question. We trained the question and passage encoders for up to 40 epochs for large datasets (NQ, TriviaQA, SQuAD) and 100 epochs for small datasets (TREC, WQ), with a learning rate of 10 -5 using Adam, linear scheduling with warm-up and dropout rate 0 . 1 .",
+      "C Negative Results\n\nHere are some attempts that we eventually give up on:\n\nAdding BM25 hard negatives Similar to DPR [30], we add one BM25 hard negative for each positive pair during training. When using 15 Mdata, this strategy improves the overall results by \u223c 0 . 5 points on the BEIR benchmark. However, running the BM25 algorithm over a 250 M+ dataset is too time-consuming even with multi-node and multi-process parallelism.",
+      "The middle bock is the in-batch negative training (Section 3.2) setting. We find that using a similar configuration (7 gold negative passages), in-batch negative training improves the results substantially. The key difference between the two is whether the gold negative passages come from the same batch or from the whole training set. Effectively, in-batch negative training is an easy and memory-efficient way to reuse the negative examples already in the batch rather than creating new ones",
+      ". While both methods include additional pretraining tasks and employ an expensive end-to-end training regime, DPR manages to outperform them on both NQ and TriviaQA, simply by focusing on learning a strong passage retrieval model using pairs of questions and answers. The additional pretraining tasks are likely more useful only when the target training sets are small"
+    ],
+    "ground_truth": "The DPR model is trained using the in-batch negative setting with a batch size of 128 and one additional BM25 negative passage per question. The question and passage encoders are trained for up to 40 epochs for large datasets and 100 epochs for small datasets, with a learning rate of 10^-5 using Adam.",
+    "source_document": "dense_retrieval.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.58,
+    "top_retrieved_doc": "dense_retrieval.pdf",
+    "top_score": 0.9973
+  },
+  {
+    "id": "Q08",
+    "question": "How does RAGAS compute the faithfulness metric for a generated answer?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". First, Faithfulness refers to the idea that the answer should be grounded in the given context. This is important to avoid hallucinations, and to ensure that the retrieved context can act as a justification for the generated answer. Indeed, RAG systems are often used in applications where the factual consistency of the generated text w.r.t. the grounded sources is highly important, e.g. in domains such as law, where information is constantly evolving",
+      "To put the results in context, we compare our proposed metrics (shown as Ragas in Table 1) with two baseline methods. For the first method, shown as GPT Score , we ask ChatGPT to assign a score between 0 and 10 for the three quality dimensions. To this end, we use a prompt that describes the meaning of the quality metric and then asks to score the given answer/context in line with that definition. For instance, for evaluating faithfulness, we used the following prompt:",
+      "The results in Table 1 show that our proposed metrics are much closer aligned with the human judgements than the predictions from the two baselines. For faithfulness, the Ragas prediction are in general highly accurate. For answer relevance, the agreement is lower, but this is largely due to the fact that the differences between the two candidate answers are often very subtle. We found context relevance to be the hardest quality dimension to evaluate",
+      "We consider a standard RAG setting, where given a question q , the system first retrieves some context c ( q ) and then uses the retrieved context to generate an answer a s ( q ) . When building a RAG system, we usually do not have access to human-annotated datasets or reference answers. We therefore focus on metrics that are fully self-contained and reference-free. We focus in particular three quality aspects, which we argue are of central importance",
+      ". Our evaluation on WikiEval has shown that the predictions from Ragas are closely aligned with human predictions, especially for faithfulness and answer relevance."
+    ],
+    "ground_truth": "To estimate faithfulness, RAGAS first uses an LLM to extract a set of statements from the answer. The aim of this step is to decompose longer sentences into shorter and more focused assertions. The answer is faithful to the context if the claims that are made in the answer can be inferred from the context.",
+    "source_document": "ragas.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.64,
+    "top_retrieved_doc": "ragas.pdf",
+    "top_score": 0.9901
+  },
+  {
+    "id": "Q09",
+    "question": "What does the RAGAS answer relevancy metric measure and what does it penalise?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Answer Relevancy measures the degree to which a response directly addresses and is appropriate for a given question. It penalizes the present of redundant information or incomplete answers given a question. Given an question and answer, rank each answer based on Answer Relevancy.\n\nquestion :\n\n[question]\n\nanswer 1 :\n\n[answer 1]\n\nanswer 2 : [answer 2]",
+      "Historically, RAG models assessments have centered on their execution in specific downstream tasks. These evaluations employ established metrics suitable to the tasks at hand. For instance, question answering evaluations might rely on EM and F1 scores [7], [45], [59], [72], whereas fact-checking tasks often hinge on Accuracy as the primary metric [4], [14], [42]. BLEU and ROUGE metrics are also commonly used to evaluate answer quality [26], [32], [52], [78]",
+      "The results in Table 1 show that our proposed metrics are much closer aligned with the human judgements than the predictions from the two baselines. For faithfulness, the Ragas prediction are in general highly accurate. For answer relevance, the agreement is lower, but this is largely due to the fact that the differences between the two candidate answers are often very subtle. We found context relevance to be the hardest quality dimension to evaluate",
+      ". Evaluating RAG architectures is, however, challenging because there are several dimensions to consider: the ability of the retrieval system to identify relevant and focused context passages, the ability of the LLM to exploit such passages in a faithful way, or the quality of the generation itself. With Ragas, we put forward a suite of metrics which can be used to evaluate these different dimensions without having to rely on ground truth human annotations",
+      "1) Quality Scores: Quality scores include context relevance, answer faithfulness, and answer relevance. These quality scores evaluate the efficiency of the RAG model from different perspectives in the process of information retrieval and generation [164]-[166].\n\nContext Relevance evaluates the precision and specificity of the retrieved context, ensuring relevance and minimizing processing costs associated with extraneous content."
+    ],
+    "ground_truth": "Answer Relevancy measures the degree to which a response directly addresses and is appropriate for a given question. It penalizes the presence of redundant information or incomplete answers given a question.",
+    "source_document": "ragas.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.69,
+    "top_retrieved_doc": "ragas.pdf",
+    "top_score": 0.9914
+  },
+  {
+    "id": "Q10",
+    "question": "What is the key advantage of RAGAS metrics with respect to human-annotated ground truth?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". Evaluating RAG architectures is, however, challenging because there are several dimensions to consider: the ability of the retrieval system to identify relevant and focused context passages, the ability of the LLM to exploit such passages in a faithful way, or the quality of the generation itself. With Ragas, we put forward a suite of metrics which can be used to evaluate these different dimensions without having to rely on ground truth human annotations",
+      ". is the retrieved context sufficiently focused). To support the development of such a framework, we have introduced WikiEval , a dataset which human judgements of these three different aspects. Finally, we have also described Ragas, our implementation of the three considered quality aspects. This framework is easy to use and can provide deverlopers of RAG systems with valuable insights, even in the absence of any ground truth",
+      "The results in Table 1 show that our proposed metrics are much closer aligned with the human judgements than the predictions from the two baselines. For faithfulness, the Ragas prediction are in general highly accurate. For answer relevance, the agreement is lower, but this is largely due to the fact that the differences between the two candidate answers are often very subtle. We found context relevance to be the hardest quality dimension to evaluate",
+      "We consider a standard RAG setting, where given a question q , the system first retrieves some context c ( q ) and then uses the retrieved context to generate an answer a s ( q ) . When building a RAG system, we usually do not have access to human-annotated datasets or reference answers. We therefore focus on metrics that are fully self-contained and reference-free. We focus in particular three quality aspects, which we argue are of central importance",
+      ". Our evaluation on WikiEval has shown that the predictions from Ragas are closely aligned with human predictions, especially for faithfulness and answer relevance."
+    ],
+    "ground_truth": "RAGAS puts forward a suite of metrics which can be used to evaluate the different dimensions of RAG architectures without having to rely on ground truth human annotations. These dimensions include the ability of the retrieval system to identify relevant context passages, the ability of the LLM to exploit those passages faithfully, and the quality of the generation itself.",
+    "source_document": "ragas.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.71,
+    "top_retrieved_doc": "ragas.pdf",
+    "top_score": 0.9905
+  },
+  {
+    "id": "Q11",
+    "question": "What performance pattern do language models exhibit when relevant information is placed in the middle of a long input context?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "We empirically study how language models use long input contexts via a series of controlled experiments. We show that language model performance degrades significantly when changing the position of relevant information, indicating that models struggle to robustly access and use information in long input contexts. In particular, performance is often lowest when models must use information in the middle of long input contexts",
+      ". We find that performance can degrade significantly when changing the position of relevant information, indicating that current language models do not robustly make use of information in long input contexts. In particular, we observe that performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts, even for explicitly long-context models",
+      ". Furthermore, we observe a distinctive U-shaped performance curve (Figure 1); language model performance is highest when relevant information occurs at the very beginning (primacy bias) or end of its input context (recency bias), and performance significantly degrades when models must access and use information in the middle of their input context (\u00a72.3)",
+      "Figure 1: Changing the location of relevant information (in this case, the position of the passage that answers an input question) within the language model's input context results in a U-shaped performance curve-models are better at using relevant information that occurs at the very beginning (primacy bias) or end of its input context (recency bias), and performance degrades significantly when models must access and use information located in the middle of its input context.",
+      ". When evaluated on settings with sequences longer than 2048 tokens (Figure 8; center and right), Flan-UL2 performance begins to degrade when relevant information is placed in the middle. Flan-T5-XXL shows a similar trend, where longer input contexts result in a greater performance degradation when placing relevant information in the middle of the input context"
+    ],
+    "ground_truth": "Language model performance degrades significantly when changing the position of relevant information. Performance is often lowest when models must use information in the middle of long input contexts, indicating that models struggle to robustly access and use information in long input contexts.",
+    "source_document": "long_context_llm.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.71,
+    "top_retrieved_doc": "long_context_llm.pdf",
+    "top_score": 0.9997
+  },
+  {
+    "id": "Q12",
+    "question": "What are the three developmental paradigms of the RAG framework described in the survey?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". The analysis outlines three developmental paradigms within the RAG framework: Naive, Advanced, and Modular RAG, each representing a progressive enhancement over its predecessors. RAG's technical integration with other AI methodologies, such as fine-tuning and reinforcement learning, has further expanded its capabilities. Despite the progress in RAG technology, there are research opportunities to improve its robustness and its ability to handle extended contexts",
+      "The RAG research paradigm is continuously evolving, and we categorize it into three stages: Naive RAG, Advanced RAG, and Modular RAG, as showed in Figure 3. Despite RAG method are cost-effective and surpass the performance of the native LLM, they also exhibit several limitations. The development of Advanced RAG and Modular RAG is a response to these specific shortcomings in Naive RAG.\n\nA. Naive RAG",
+      "Fig. 3. Comparison between the three paradigms of RAG. (Left) Naive RAG mainly consists of three parts: indexing, retrieval and generation. (Middle) Advanced RAG proposes multiple optimization strategies around pre-retrieval and post-retrieval, with a process similar to the Naive RAG, still following a chain-like structure. (Right) Modular RAG inherits and develops from the previous paradigm, showcasing greater flexibility overall",
+      "The paper unfolds as follows: Section II introduces the main concept and current paradigms of RAG. The following three sections explore core components-'Retrieval', 'Generation' and 'Augmentation', respectively. Section III focuses on optimization methods in retrieval,including indexing, query and embedding optimization. Section IV concentrates on postretrieval process and LLM fine-tuning in generation. Section V analyzes the three augmentation processes",
+      ". This paper considers both technical paradigms and research methods, summarizing three main research paradigms from over 100 RAG studies, and analyzing key technologies in the core stages of 'Retrieval,' 'Generation,' and 'Augmentation.' On the other hand, current research tends to focus more on methods, lacking analysis and summarization of how to evaluate RAG. This paper comprehensively reviews the downstream tasks, datasets, benchmarks, and evaluation methods applicable to RAG"
+    ],
+    "ground_truth": "The analysis outlines three developmental paradigms within the RAG framework: Naive, Advanced, and Modular RAG, each representing a progressive enhancement over its predecessors. RAG's technical integration with other AI methodologies such as fine-tuning and reinforcement learning has further expanded its capabilities.",
+    "source_document": "rag_llm.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.62,
+    "top_retrieved_doc": "rag_llm.pdf",
+    "top_score": 0.9998
+  },
+  {
+    "id": "Q13",
+    "question": "How many datasets and categories does the MTEB benchmark cover in its English subset?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "MTEB Benchmark [40] is recently proposed for benchmarking massive text embedding tasks. Though MTEB is multilingual due to the inclusion of bitext mining datasets, most datasets are still only available in English. In this paper, we evaluate the English subsets, which have 56 datasets spanning across 6 categories: Classification (Class.), Clustering (Clust.), Pair Classification (PairClass.), Rerank, Retrieval (Retr.), STS, and Summarization (Summ.)",
+      "Table 3: Results on the MTEB benchmark [40] (56 datasets in English subset). Here we only report averaged numbers on each task category for space reasons, please check out Appendix B for a detailed version. BERT-FTbase uses the same fine-tuning data as E5 but initializes from BERTbase.",
+      ". Hugging Face's MTEB leaderboard 7 evaluates embedding models across 8 tasks, covering 58 datasests. Additionally, C-MTEB focuses on Chinese capability, covering 6 tasks and 35 datasets. There is no one-size-fits-all answer to 'which embedding model to use.' However, some specific models are better suited for particular use cases.",
+      "Evaluation and interpretation of text embeddings are also non-trivial. Most benchmarks measure the embedding quality through downstream task performances. For example, SentEval [13] uses linear probing and a collection of semantic textual similarity (STS) datasets, while the BEIR benchmark [53] focuses on zero-shot information retrieval scenarios. The recently introduced MTEB benchmark [40] combines 56 datasets spanning across 8 tasks and 112 languages",
+      ". We conduct extensive evaluations on 56 datasets from the BEIR and MTEB benchmarks. For zero-shot settings, E5 is the first model that outperforms the strong BM25 baseline on the BEIR retrieval benchmark without using any labeled data. When fine-tuned, E5 obtains the best results on the MTEB benchmark, beating existing embedding models with 40 \u00d7 more parameters."
+    ],
+    "ground_truth": "MTEB evaluates the English subsets, which have 56 datasets spanning across 6 categories: Classification, Clustering, Pair Classification, Rerank, Retrieval, STS, and Summarization.",
+    "source_document": "text_embed.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 1.53,
+    "top_retrieved_doc": "text_embed.pdf",
+    "top_score": 0.9998
+  },
+  {
+    "id": "Q14",
+    "question": "What was the real GDP growth rate in the fourth quarter of 2025?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "GDP (Second Estimate), 4th Quarter and Year 2025\n\nReal gross domestic product (GDP) increased at an annual rate of 0.7 percent in the fourth quarter of 2025 (October, November, and December), according to the second estimate released today by the U.S. Bureau of Economic Analysis. In the third quarter, real GDP increased 4.4 percent.\n\nThe second report for the fourth quarter of 2025, originally scheduled for February 26, 2026, was rescheduled due to the October -November 2025 government shutdown.",
+      "Sources of change for real GDP\n\nReal GDP increased at an annual rate of 0.7 percent (0.2 percent at a quarterly rate 1 ) in the fourth quarter, a downward revision of 0.7 percentage point from the previous estimate, reflecting downward revisions to exports, consumer spending, government spending, and investment.",
+      "GDP for 2025\n\nReal GDP increased 2.1 percent in 2025 (from the 2024 annual level to the 2025 annual level), revised down 0.1 percentage point from the previous estimate. The increase in real GDP in 2025 primarily reflected increases in consumer spending and investment.",
+      "Real GDP, Percent Change From Preceding Quarter\n\nSeasonally adjusted annual rates\n\nThe contributors to the increase in real GDP in the fourth quarter were increases in consumer spending and investment. These movements were partly offset by decreases in government spending and exports. Imports, which are a subtraction in the calculation of GDP, decreased.",
+      "Compared to the third quarter, the deceleration in real GDP in the fourth quarter reflected downturns in government spending and exports and a deceleration in consumer spending that were partly offset by an acceleration in investment. The decrease in imports was smaller than in the previous quarter."
+    ],
+    "ground_truth": "Real GDP increased at an annual rate of 0.7 percent (0.2 percent at a quarterly rate) in the fourth quarter, a downward revision of 0.7 percentage point from the previous estimate, reflecting downward revisions to exports, consumer spending, government spending, and investment.",
+    "source_document": "gdp4q25.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.75,
+    "top_retrieved_doc": "gdp4q25.pdf",
+    "top_score": 0.9999
+  },
+  {
+    "id": "Q15",
+    "question": "What factors caused the deceleration in real GDP in Q4 2025?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Compared to the third quarter, the deceleration in real GDP in the fourth quarter reflected downturns in government spending and exports and a deceleration in consumer spending that were partly offset by an acceleration in investment. The decrease in imports was smaller than in the previous quarter.",
+      "Contributions to the Percent Change in Real GDP, 2025:Q4 Real GDP increased 0.7 percent\n\nGDP Gross domestic product\n\nNote. Imports are a subtraction in the calculation of GDP; thus, a decrease in imports results in a positve contribution to GDP. U.S. Bureau of Economic Analysis",
+      "GDP for 2025\n\nReal GDP increased 2.1 percent in 2025 (from the 2024 annual level to the 2025 annual level), revised down 0.1 percentage point from the previous estimate. The increase in real GDP in 2025 primarily reflected increases in consumer spending and investment.",
+      "GDP (Second Estimate), 4th Quarter and Year 2025\n\nReal gross domestic product (GDP) increased at an annual rate of 0.7 percent in the fourth quarter of 2025 (October, November, and December), according to the second estimate released today by the U.S. Bureau of Economic Analysis. In the third quarter, real GDP increased 4.4 percent.\n\nThe second report for the fourth quarter of 2025, originally scheduled for February 26, 2026, was rescheduled due to the October -November 2025 government shutdown.",
+      "Real GDP, Percent Change From Preceding Quarter\n\nSeasonally adjusted annual rates\n\nThe contributors to the increase in real GDP in the fourth quarter were increases in consumer spending and investment. These movements were partly offset by decreases in government spending and exports. Imports, which are a subtraction in the calculation of GDP, decreased."
+    ],
+    "ground_truth": "The deceleration in real GDP in the fourth quarter reflected downturns in government spending and exports and a deceleration in consumer spending that were partly offset by an acceleration in investment. The decrease in imports was smaller than in the previous quarter.",
+    "source_document": "gdp4q25.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.88,
+    "top_retrieved_doc": "gdp4q25.pdf",
+    "top_score": 0.9905
+  },
+  {
+    "id": "Q16",
+    "question": "What was the growth rate of real final sales to private domestic purchasers in Q4 2025?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Real final sales to private domestic purchasers , the sum of consumer spending and gross private fixed investment, increased 1.9 percent in the fourth quarter, revised down 0.5 percentage point from the previous estimate.",
+      "| 67 Final sales to private domestic purchasers                                                                                                                                       | 67 Final sales to private domestic purchasers                                                                                                                                       | 26,400.9",
+      "| 41                                              | Final sales to private domestic purchasers                  | 6.5                     | 5.5       | 5.2           | 9.9            | 11.3           | 6.2            | 4.6            | 8.4                                                  | 5.5                                                  | 5.7                                                  | 5.4                                                  | 5.0                                                  |",
+      "| 31 32 Final sales to       | Final sales to domestic purchasers private domestic purchasers | 3.0 3.2               | 2.5 2.3            | -2.4                   | 6.9 8.5            | 2.2 2.9            | 2.7                | 3.1 3.0            | 2.4 2.6            | 2.2 2.3                                                             | 2.9                                                                 | -0.1 -0.4                                                           | 7.0",
+      "GDP (Second Estimate), 4th Quarter and Year 2025\n\nReal gross domestic product (GDP) increased at an annual rate of 0.7 percent in the fourth quarter of 2025 (October, November, and December), according to the second estimate released today by the U.S. Bureau of Economic Analysis. In the third quarter, real GDP increased 4.4 percent.\n\nThe second report for the fourth quarter of 2025, originally scheduled for February 26, 2026, was rescheduled due to the October -November 2025 government shutdown."
+    ],
+    "ground_truth": "Real final sales to private domestic purchasers, the sum of consumer spending and gross private fixed investment, increased 1.9 percent in the fourth quarter, revised down 0.5 percentage point from the previous estimate.",
+    "source_document": "gdp4q25.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.81,
+    "top_retrieved_doc": "gdp4q25.pdf",
+    "top_score": 0.9994
+  },
+  {
+    "id": "Q17",
+    "question": "How does natural selection act on variations among individuals according to Darwin?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Organs of little apparent importance .-As natural selection acts by life and death,-by the preservation of individuals with any favourable variation, and by the destruction of those with any unfavourable deviation of  structure,-I  have  sometimes  felt  much  difficulty  in  understanding  the origin of simple parts, of which the importance does not seem sufficient to cause the preservation of successively varying individuals",
+      "cattle when nearly adult;-so in a state  of  nature,  natural  selection  will  be  enabled  to  act  on  and  modify organic beings at any age, by the accumulation of profitable variations at that age, and by their inheritance at a corresponding age",
+      ". Action of Natural Selection, through Divergence of Character and Extinction,  on  the  descendants  from  a  common  parent.  Explains  the Grouping of all organic beings. How  will  the  struggle  for  existence,  discussed  too  briefly  in  the  last chapter, act in regard to variation? Can the principle of selection, which we have seen is so potent in the hands of man, apply in nature? I think we shall see  that  it  can  act  most  effectually",
+      "Circumstances  favourable  to  Natural  Selection .-This  is  an  extremely intricate subject. A large amount of inheritable and diversified variability is favourable, but I believe mere individual differences suffice for the work. A large number of individuals, by giving a better chance for the appearance within  any  given  period  of  profitable  variations,  will  compensate  for  a lesser  amount  of  variability  in  each  individual,  and  is,  I  believe,  an extremely important element of success",
+      "favourable  to  natural  selection,  by  giving  a  better  chance  of  profitable variations  occurring;  and  unless  profitable  variations  do  occur,  natural selection  can  do  nothing.  Not  that,  as  I  believe,  any  extreme  amount  of variability  is  necessary;  as  man  can  certainly  produce  great  results  by adding  up  in  any  given  direction  mere  individual  differences,  so  could Nature, but far more easily, from having incomparably longer time at her disposal"
+    ],
+    "ground_truth": "Any variation, however slight and from whatever cause proceeding, if it be in any degree profitable to an individual of any species, in its infinitely complex relations to other organic beings and to external nature, will tend to the preservation of that individual, and will generally be inherited by its offspring.",
+    "source_document": "species_origin.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.85,
+    "top_retrieved_doc": "species_origin.pdf",
+    "top_score": 0.9462
+  },
+  {
+    "id": "Q18",
+    "question": "What evidence does Darwin cite regarding the classification of closely allied species and varieties?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". Moreover, the species of the larger genera, which afford the greater number of varieties or incipient species, retain to a certain degree the character of varieties; for they differ from each other by a less amount of difference than do the species of smaller genera. The closely allied species also of the larger genera  apparently  have  restricted  ranges,  and  they  are  clustered  in  little groups  round  other  species-in  which  respects  they  resemble  varieties",
+      "The existence of closely allied or representative species in any two areas, implies, on the theory of descent with modification, that the same parents formerly inhabited both areas; and we almost invariably find that wherever many  closely  allied  species  inhabit  two  areas,  some  identical  species common  to  both  still  exist.  Wherever  many  closely  allied  yet  distinct species  occur,  many  doubtful  forms  and  varieties  of  the  same  species likewise  occur",
+      ". And  wherever  many  closely-allied  species  occur,  there  will  be  found many forms which some naturalists rank as distinct species, and some as varieties;  these  doubtful  forms  showing  us  the  steps  in  the  process  of modification",
+      ".  In  genera  having  more than  the  average  number  of  species  in  any  country,  the  species  of  these genera have more than the average number of varieties. In large genera the species  are  apt  to  be  closely,  but  unequally,  allied  together,  forming  little clusters round certain species. Species very closely allied to other species apparently have restricted ranges. In all these several respects the species of large  genera  present  a  strong  analogy  with  varieties",
+      ". And we have seen in the chapter on  the  Struggle  for  Existence  that  it  is  the  most  closely-allied  forms,varieties of the same species, and species of the same genus or of related genera,-which,  from  having  nearly  the  same  structure,  constitution,  and habits,  generally  come  into  the  severest  competition  with  each  other"
+    ],
+    "ground_truth": "Many of the cases of strongly-marked varieties or doubtful species well deserve consideration, as several interesting lines of argument from geographical distribution, analogical variation, and hybridism have been brought to bear on the attempt to determine their rank.",
+    "source_document": "species_origin.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.61,
+    "top_retrieved_doc": "species_origin.pdf",
+    "top_score": 0.9802
+  },
+  {
+    "id": "Q19",
+    "question": "What is the Stoic summum bonum according to the Meditations commentary?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". Their physical theory was a pantheistic materialism, their summum bonum \"to live according to nature.\" Their wise man needs nothing, he is sufficient to himself; virtue is good, vice bad, external things indifferent. THEOPHRASTUS, a philosopher, pupil of Aristotle, and his successor as president of the Lyceum. He wrote a large number of works on philosophy and natural history. Died 287 B.C. Thrasea, P. Thrasea Pactus, a senator and Stoic philosopher, a noble and courageous man",
+      ".  The  end therefore  of  a  man,  or  the summum bonum whereby  that  end  is  fulfilled, cannot  consist  in  the  consummation  of  actions  purposed  and  intended. Again, concerning these outward worldly things, were it so that any of them did  properly  belong  unto  man,  then  would  it  not  belong  unto  man,  to condemn them and to stand in opposition with them",
+      "Such is the system which underlies the Meditations of Marcus Aurelius. Some knowledge of it is necessary to the right understanding of the book, but  for  us  the  chief  interest  lies  elsewhere.  We  do  not  come  to  Marcus Aurelius for a treatise on Stoicism. He is no head of a school to lay down a body  of  doctrine  for  students;  he  does  not  even  contemplate  that  others should  read  what  he  writes",
+      ". The ideal set before each was nominally much the same. The Stoics aspired to \u1f01\u03c0\u03ac\u03b8\u03b5\u03b9\u03b1, the repression of all emotion, and the Epicureans to \u1f00\u03c4\u03b1\u03c1\u03b1\u03be\u03af\u03b1, freedom  from  all  disturbance;  yet  in  the  upshot  the  one  has  become  a synonym  of  stubborn  endurance,  the  other  for  unbridled  licence.  With Epicureanism  we  have  nothing  to  do  now;  but  it  will  be  worth  while  to sketch the history and tenets of the Stoic sect",
+      ".  His  philosophy  is  not  an  eager  intellectual inquiry, but more what we should call religious feeling. The uncompromising stiffness of Zeno or Chrysippus is softened and transformed by passing through a nature reverent and tolerant, gentle and free from guile; the grim resignation which made life possible to the Stoic sage  becomes  in  him  almost  a  mood  of  aspiration"
+    ],
+    "ground_truth": "The Stoic physical theory was a pantheistic materialism, and their summum bonum was 'to live according to nature.' Their wise man needs nothing; he is sufficient to himself; virtue is good, vice bad, external things indifferent.",
+    "source_document": "meditations.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.69,
+    "top_retrieved_doc": "meditations.pdf",
+    "top_score": 0.6407
+  },
+  {
+    "id": "Q20",
+    "question": "Who does Plato say should be kings in the perfect state, according to the Republic?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". The Statesman, though less perfect in style than the Republic and of far less range, may justly be regarded as one of the greatest of Plato's dialogues. 6. Others as well as Plato have chosen an ideal Republic to be the vehicle of thoughts which they could not definitely express, or which went beyond their  own  age",
+      ". Plato's Republic has been said to be a church and not a state; and such an ideal of a city in the heavens has always hovered over the Christian world, and is embodied in St. Augustine's 'De Civitate Dei,' which is suggested by the decay and fall of the Roman Empire, much in the same manner in which we  may  imagine  the  Republic  of  Plato  to  have  been  influenced  by  the decline of Greek politics in the writer's own age",
+      ". Whether such  a  state  is  or  ever  will  be  matters  not;  he  will  act  according  to  that pattern and no other... The most noticeable points in the 9th Book of the Republic are:-(1) the account of pleasure; (2) the number of the interval which divides the king from the tyrant; (3) the pattern which is in heaven. 1.  Plato's  account of pleasure is remarkable for moderation, and in this respect contrasts with the later Platonists and the views which are attributed to them by Aristotle",
+      "attributing the victory to the ancient good order of Athens and to the favor of Apollo and Athene (cp. Introd. to Critias). Again, Plato may be regarded as the 'captain' ('arhchegoz') or leader of a goodly band of followers; for in the Republic is to be found the original of Cicero's De Republica, of St. Augustine's City of God, of the Utopia of Sir Thomas More, and of the numerous other imaginary States which are framed upon the same model",
+      ". And so we have arrived at the conclusion, that in the perfect State  wives  and  children  are  to  be  in  common;  and  the  education  and pursuits of men and women, both in war and peace, are to be common, and kings are to be philosophers and warriors, and the soldiers of the State are to  live  together,  having  all  things  in  common;  and  they  are  to  be  warrior athletes, receiving no pay but only their food, from the other citizens"
+    ],
+    "ground_truth": "In the perfect State, wives and children are to be in common, and the education and pursuits of men and women in both war and peace are to be common. Kings are to be philosophers and warriors, and the soldiers of the State are to live together having all things in common.",
+    "source_document": "the_republic.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.72,
+    "top_retrieved_doc": "the_republic.pdf",
+    "top_score": 0.9588
+  },
+  {
+    "id": "Q21",
+    "question": "What does Sherlock Holmes say to Watson about how to examine a personal object for clues?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". 'There is something in what the fellow says about outdoor work,' he remarked, 'so I think, Watson, that I must leave you to your papers for a little.' It was after five o'clock when Sherlock Holmes left me, but I had no time to be lonely, for within an hour there arrived a confectioner's man with a very large flat box",
+      ". 'Try the settee,' said Holmes, relapsing into his armchair and putting his fingertips together, as was his custom when in judicial moods. 'I know, my dear Watson, that you share my love of all that is bizarre and outside the conventions and humdrum routine of everyday life",
+      ". 'You  will  excuse  me,'  said  Holmes  blandly,  'but  I  could  not  help overhearing the questions which you put to the salesman just now. I think that I could be of assistance to you.' 'You? Who are you? How could you know anything of the matter?' 'My name is  Sherlock  Holmes.  It  is  my  business  to  know  what  other people don't know.' 'But you can know nothing of this?' 'Excuse me, I know everything of it. You are endeavouring to trace some geese which were sold by Mrs",
+      "'Who  was  he,  then, and what  was  his object in deserting  Miss Sutherland?' The  question  was  hardly  out  of  my  mouth,  and  Holmes  had  not  yet opened his lips to reply, when we heard a heavy footfall in the passage and a tap at the door. 'This is the girl's stepfather, Mr. James Windibank,' said Holmes. 'He has written to me to say that he would be here at six",
+      ".  It  was  twenty-five  minutes  past  four.  I  had  hardly  finished  when Holmes returned with the news that the boy was putting in the horse. 'I want to test a little theory of mine,' said he, pulling on his boots. 'I think, Watson, that you are now standing in the presence of one of the most absolute fools in Europe. I deserve to be kicked from here to Charing Cross. But I think I have the key of the affair now.' 'And where is it?' I asked, smiling. 'In  the  bathroom,'  he  answered"
+    ],
+    "ground_truth": "Sherlock Holmes tells Watson: 'You know my methods. What can you gather yourself as to the individuality of the man who has worn this article?' Holmes demonstrates his method of deducing personal characteristics from physical objects such as hats.",
+    "source_document": "sherlock_homes.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.62,
+    "top_retrieved_doc": "sherlock_homes.pdf",
+    "top_score": 0.7693
+  },
+  {
+    "id": "Q22",
+    "question": "What does the rag_hallucination paper show happens to hallucination rates with retrieval-augmented models?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "We additionally allow annotators to mark if they cannot determine whether the model response is knowledgeable or a hallucination ('unclear').\n\nThe evaluation results are shown in Table 3. We first see that hallucination rates drop dramatically for retrieval-augmented models, while knowledgeability rates skyrocket. These results support our main claim that our models reduce hallucination in conversations . We show example model outputs in Table 4.",
+      "Large language models (LLMs) inevitably exhibit hallucinations since the accuracy of generated texts cannot be secured solely by the parametric knowledge they encapsulate. Although retrieval-augmented generation (RAG) is a practicable complement to LLMs, it relies heavily on the relevance of retrieved documents, raising concerns about how the model behaves if retrieval goes wrong. To this end, we propose the C orrective R etrieval A ugmented G eneration (CRAG) to improve the robustness of generation",
+      "Table 4: Hallucination in (Non-)Retrieval-Augmented Models. Examples of model outputs on the Wizard of Wikipedia Test set, unseen distribution; the retrieval-augmented models use BART as a base seq2seq model. Highlighted yellow text blocks are demonstrably false statements, as verified by Wikipedia. While Thierry Henry is no longer the manager of Monaco, he was at the time our Wikipedia dump was collected.",
+      ". That is, retrieving 25 documents for RAG Token yields higher F1 scores, and lower perplexities, as outlined in Table 15; however, this also yields a lower Knowledge F1 score, and in human evaluations, we see higher levels of hallucination. Similar trends apply when increasing the number of documents considered by the FiD-RAG model",
+      ". As Figure 1 shows that a low-quality retriever is prone to introducing a substantial amount of irrelevant information, impeding the models from acquiring accurate knowledge and potentially misleading them, resulting in issues such as hallucinations (Zhang et al., 2023b). However, most conventional RAG approaches indiscriminately incorporate the retrieved documents, regardless of whether these documents are relevant or not (Rony et al., 2022)"
+    ],
+    "ground_truth": "Hallucination rates drop dramatically for retrieval-augmented models, while knowledgeability rates skyrocket. These results support the main claim that retrieval-augmented models reduce hallucination in conversations.",
+    "source_document": "rag_hallucination.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.81,
+    "top_retrieved_doc": "rag_hallucination.pdf",
+    "top_score": 0.9951
+  },
+  {
+    "id": "Q23",
+    "question": "What is the main thesis of the paper 'Retrieval Augmentation Reduces Hallucination in Conversation'?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "- Kurt Shuster, Spencer Poff, Moya Chen, Douwe Kiela, and Jason Weston. 2021. Retrieval augmentation reduces hallucination in conversation. In Findings of the Association for Computational Linguistics: EMNLP 2021, Virtual Event / Punta Cana, Dominican Republic, 16-20 November, 2021 , pages 3784-3803. Association for Computational Linguistics.",
+      "Retrieval Augmentation Reduces Hallucination in Conversation\n\nKurt Shuster, Spencer Poff, Moya Chen, Douwe Kiela \u2217 , Jason Weston \u2217\n\nFacebook AI Research\n\n{kshuster,spoff,mpchen,dkiela,jase}@fb.com\n\nAbstract",
+      ". Retrieval-augmented generation in particular is an intuitively promising solution to this problem, and in detailed experiments we have shown that this class of approaches significantly reduces the hallucination problem in dialogue, and can help generalize beyond the training data on previously unseen distributions as well. Moreover, our best systems manage to do this while maintaining conversational ability.",
+      "We additionally allow annotators to mark if they cannot determine whether the model response is knowledgeable or a hallucination ('unclear').\n\nThe evaluation results are shown in Table 3. We first see that hallucination rates drop dramatically for retrieval-augmented models, while knowledgeability rates skyrocket. These results support our main claim that our models reduce hallucination in conversations . We show example model outputs in Table 4.",
+      "Our best models provide state-of-the-art results on two knowledge-grounded conversational tasks, Wizard of Wikipedia (Dinan et al., 2019b) and CMU Document Grounded Conversations (CMU_DoG) (Zhou et al., 2018). We show through automatic and human evaluations that standard (non-retrieval augmented) large language models indeed suffer from hallucination, whereas our best models substantially curtail the issue, reducing hallucinated responses by over 60%"
+    ],
+    "ground_truth": "The paper's main thesis is that retrieval augmentation reduces hallucination in conversation. The paper demonstrates that hallucination rates drop dramatically for retrieval-augmented models, while knowledgeability rates skyrocket.",
+    "source_document": "rag_hallucination.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.72,
+    "top_retrieved_doc": "corrective_rag.pdf",
+    "top_score": 0.9962
+  },
+  {
+    "id": "Q24",
+    "question": "What does the LLM evaluation survey say about the importance of measuring factual hallucination?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". Evaluating factuality is of great importance in order to trust and efficiently use these models. This includes the ability of these models to maintain consistency with known facts, avoid generating misleading or false information (known as 'factual hallucination\"), and effectively learn and recall factual knowledge. A range of methodologies have been proposed to measure and improve the factuality of LLMs.",
+      "LLMs are capable of generating coherent and seemingly factual text. However, the information generated can include factual inaccuracies or statements ungrounded in reality, a phenomenon known as hallucination [163, 253]. Evaluating these issues helps improve the training methods of LLMs to reduce the occurrence of hallucinations. For the evaluation of illusions in large-scale visual models, Liu et al. [123] introduced a comprehensive and robust large-scale visual instruction dataset: LRV-Instruction",
+      "Estimating faithfulness using LLMs The problem of detecting hallucinations in LLM generated responses has been extensively studied (Ji et al., 2023). Several authors have suggested the idea of predicting factuality using a few-shot prompting strategy (Zhang et al., 2023). Recent analyses, however, suggest that existing models struggle with detecting hallucination when using standard prompting strategies (Li et al., 2023; Azaria and Mitchell, 2023)",
+      ". In the realm of hallucination assessment, [116] has developed UHGEval, a benchmark specifically designed to evaluate the performance of Chinese LLMs in text generation without being constrained by hallucination-related limitations.",
+      ". Manakul et al. [133] operated on two hypotheses regarding how LLMs generate factual or hallucinated responses. It proposed the use of three formulas (BERTScore [249], MQAG [134] and n-gram) to evaluate factuality and employed alternative LLMs to gather token probabilities for black-box language models. The study discovered that simply computing sentence likelihood or entropy helped validate the factuality of the responses. Min et al"
+    ],
+    "ground_truth": "Evaluating factuality is of great importance in order to trust and efficiently use language models. This includes the ability of these models to maintain consistency with known facts, avoid generating misleading or false information (known as 'factual hallucination'), and effectively learn and recall factual knowledge.",
+    "source_document": "llm_eval.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.72,
+    "top_retrieved_doc": "llm_eval.pdf",
+    "top_score": 0.9979
+  },
+  {
+    "id": "Q25",
+    "question": "What does the HELM evaluation framework assess in language models?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "Instead of focusing on specific tasks and evaluation metrics, HELM [114] provides a comprehensive assessment of LLMs. It evaluates language models across various aspects such as language understanding, generation, coherence, context sensitivity, common-sense reasoning, and domainspecific knowledge. HELM aims to holistically evaluate the performance of language models across different tasks and domains. For LLMs Evaluator, Zhang et al",
+      ". M3Exam [250] provides a unique and comprehensive evaluation framework that incorporates multiple languages, modalities, and levels to test the general capabilities of LLMs in diverse contexts. Additionally, GAOKAO-Bench [245] provides a comprehensive evaluation benchmark for gauging the proficiency of large language models in intricate and context-specific tasks, utilizing questions sourced from the Chinese Gaokao examination",
+      "For the evaluation of Multimodal Large Language Models (MLLMs), MME [46] serves as an extensive evaluative benchmark, aiming to assess their perceptual and cognitive aptitudes. It employs meticulously crafted instruction-answer pairs alongside succinct instruction design, thereby guaranteeing equitable evaluation conditions. To robustly evaluate large-scale vision-language models, Liu et al. [126] introduced MMBench, which comprises a comprehensive dataset and employs a CircularEval assessment method",
+      ". For LLMs Evaluator, Zhang et al. [252] introduces LLMEval2, which encompasses a wide range of capability evaluations. In addition, Xiezhi [59] presents a comprehensive suite for assessing the knowledge level of large-scale language models in different subject areas. The evaluation conducted through Xiezhi enables researchers to comprehend the notable limitations inherent in these models and facilitates a deeper comprehension of their capabilities in diverse fields",
+      "This paper serves as the first comprehensive survey on the evaluation of large language models. As depicted in Figure 1, we explore existing work in three dimensions: 1) What to evaluate, 2) Where to evaluate, and 3) How to evaluate. Specifically, 'what to evaluate\" encapsulates existing evaluation tasks for LLMs, 'where to evaluate\" involves selecting appropriate datasets and benchmarks for evaluation, while 'how to evaluate\" is concerned with the evaluation process given appropriate tasks and datasets"
+    ],
+    "ground_truth": "HELM provides a comprehensive assessment of LLMs, evaluating language models across various aspects such as language understanding, generation, coherence, context sensitivity, common-sense reasoning, and domain-specific knowledge. HELM aims to holistically evaluate the performance of language models across different tasks and domains.",
+    "source_document": "llm_eval.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.66,
+    "top_retrieved_doc": "llm_eval.pdf",
+    "top_score": 0.9997
+  },
+  {
+    "id": "Q26",
+    "question": "How does Plato describe the four corresponding faculties of the soul in relation to levels of knowledge?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      ". And now to those four divisions of knowledge you may assign four corresponding faculties-pure intelligence to the highest sphere; active  intelligence  to  the  second;  to  the  third,  faith;  to  the  fourth,  the perception of shadows-and the clearness of the several faculties will be in the same ratio as the truth of the objects to which they are related... Like  Socrates,  we  may  recapitulate  the  virtues  of  the  philosopher",
+      ". You have quite conceived my meaning, I said; and now, corresponding to these four divisions, let there be four faculties  in  the  soul-reason answering to the highest, understanding to the second, faith (or conviction) to the third, and perception of shadows to the last-and let there be a scale of them, and let us suppose that the several faculties have clearness in the same degree that their objects have truth. I understand, he replied, and give my assent, and accept your arrangement.",
+      ". In the latter part of the sixth book, three questions have to be considered: 1st, the nature of the longer and more circuitous way, which is contrasted with the shorter and more imperfect method of Book IV; 2nd, the heavenly pattern or idea of the state; 3rd, the relation of the divisions of knowledge to one another and to the corresponding faculties of the soul: 1. Of the higher method of knowledge in Plato we have only a glimpse",
+      ". And  the  state  which  corresponds  to  the single form of virtue is that which we have been describing, wherein reason rules  under  one  of  two  names-monarchy and aristocracy. Thus there are five forms in all, both of states and of souls... In  attempting  to  prove  that  the  soul  has  three  separate  faculties,  Plato takes  occasion  to  discuss  what  makes  difference  of  faculties.  And  the criterion  which  he  proposes  is  difference  in  the  working  of  the  faculties",
+      ". These are the discussions of an age before logic; and any one who is wearied by them should remember that they are necessary to the clearing up of ideas in the first development of the human faculties. The psychology of Plato extends no further than the division of the soul into the rational, irascible, and concupiscent elements, which, as far as we know,  was  first  made  by  him,  and  has  been  retained  by  Aristotle  and succeeding ethical writers"
+    ],
+    "ground_truth": "Plato assigns four corresponding faculties to four divisions of knowledge: pure intelligence to the highest sphere, active intelligence to the second, faith to the third, and the perception of shadows to the fourth. The clearness of the several faculties will be in the same ratio as the truth of the objects to which they are related.",
+    "source_document": "the_republic.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.67,
+    "top_retrieved_doc": "the_republic.pdf",
+    "top_score": 0.9894
+  },
+  {
+    "id": "Q27",
+    "question": "What does Marcus Aurelius say about the nature of man's life in the Meditations?",
+    "answer": "Generation failed: the language model did not return a response.",
+    "contexts": [
+      "and these rites were often trivial, sometimes violated right feeling or even morality. Even when the gods stood on the side of righteousness, they were concerned  with  the  act  more  than  with  the  intent.  But  Marcus  Aurelius knows that what the heart is full of, the man will do. 'Such as thy thoughts and ordinary cogitations are,' he  says,  'such  will  thy  mind  be  in  time.'  And  every  page  of  the  book shows us that he knew thought was sure to issue in act",
+      ". Many of his thoughts sound like far-off echoes of St. Paul; and  it  is  strange  indeed  that  this  most  Christian  of  emperors  has  nothing good to say of the Christians. To him they are only sectaries 'violently and passionately set upon opposition. Profound as philosophy these Meditations certainly are not; but Marcus Aurelius  was  too  sincere  not  to  see  the  essence  of  such  things  as  came within his experience. Ancient religions were for the most part concerned with  outward  things",
+      "Such is the system which underlies the Meditations of Marcus Aurelius. Some knowledge of it is necessary to the right understanding of the book, but  for  us  the  chief  interest  lies  elsewhere.  We  do  not  come  to  Marcus Aurelius for a treatise on Stoicism. He is no head of a school to lay down a body  of  doctrine  for  students;  he  does  not  even  contemplate  that  others should  read  what  he  writes",
+      ". But although Marcus Aurelius may have held intellectually that his soul was destined to be absorbed, and to lose consciousness of itself, there were times when  he  felt, as all who  hold  it  must  sometimes  feel,  how unsatisfying  is  such  a  creed.  Then  he  gropes  blindly  after  something  less empty and vain",
+      "MEDITATIONS\n\nBy Marcus Aurelius\n\nMARCUS AURELIUS ANTONINUS THE ROMAN EMPEROR"
+    ],
+    "ground_truth": "Marcus Aurelius writes: 'Thus must thou according to truth and nature, throughly consider how man's life is but for a very moment of time, and so depart meek and contented: even as if a ripe olive falling should praise the ground that bare her, and give thanks to the tree that begat her.'",
+    "source_document": "meditations.pdf",
+    "retrieval_method": "hybrid_rrf",
+    "collection": "rag_recursive",
+    "error": "Unauthorized (status code: 401)",
+    "elapsed_s": 0.71,
+    "top_retrieved_doc": "meditations.pdf",
+    "top_score": 0.9777
+  }
+]
